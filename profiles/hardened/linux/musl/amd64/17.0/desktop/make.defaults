@@ -1,0 +1,2 @@
+USE="acl bzip2 gdbm"
+VIDEO_CARDS="amdgpu fbdev intel i965 nouveau radeon radeonsi vesa"

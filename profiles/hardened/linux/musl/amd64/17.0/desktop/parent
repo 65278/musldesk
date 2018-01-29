@@ -1,0 +1,7 @@
+#musl hardened
+../../../../../../../../../portage/profiles/hardened/linux/musl/amd64
+
+# Don't do this or multilib breaks hard
+#../../../../../../../../../portage/profiles/default/linux/amd64/17.0/desktop
+# include desktop itself rather
+../../../../../../../../../portage/profiles/targets/desktop
