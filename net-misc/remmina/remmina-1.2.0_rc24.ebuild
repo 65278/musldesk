@@ -44,9 +44,14 @@ RDEPEND="${CDEPEND}
 
 DOCS=( AUTHORS CHANGELOG.md README.md THANKS.md )
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.2.0-execinfo.patch"
+)
+
 S="${WORKDIR}/Remmina-${MY_PV}"
 
 src_configure() {
+
 	local mycmakeargs=(
 		-DWITH_APPINDICATOR=$(usex ayatana)
 		-DWITH_GCRYPT=$(usex crypt)
