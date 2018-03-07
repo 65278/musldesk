@@ -1,0 +1,28 @@
+Index: guitarix-0.36.1/src/gx_head/engine/ladspaback.cpp
+===================================================================
+--- guitarix-0.36.1.orig/src/gx_head/engine/ladspaback.cpp
++++ guitarix-0.36.1/src/gx_head/engine/ladspaback.cpp
+@@ -1785,7 +1785,11 @@ void LadspaPluginList::save(gx_system::C
+     }
+     if (rename(tfname.c_str(), fname.c_str()) != 0) {
+ 	char buf[100];
++	#ifdef _GLIBC_
+ 	char *p = strerror_r(errno, buf, sizeof(buf));
++	#else
++	int p = strerror_r(errno, buf, sizeof(buf));
++	#endif
+ 	gx_print_error(
+ 	    "ladspalist",ustring::compose(_("error renaming LADSPA config file '%1': %2"), fname, p));
+ 	return;
+@@ -1796,7 +1800,11 @@ void LadspaPluginList::save(gx_system::C
+ 	} else {
+ 	    if (rename(i->first.c_str(), i->second.c_str()) != 0) {
+ 		char buf[100];
++		#ifdef _GLIBC_
+ 		char *p = strerror_r(errno, buf, sizeof(buf));
++		#else
++		int p = strerror_r(errno, buf, sizeof(buf));
++		#endif
+ 		gx_print_error(
+ 		    "ladspalist",
+ 		    ustring::compose("error renaming %1 to %2: %3\n", i->first, i->second, p));
